@@ -1,0 +1,63 @@
+{
+  "compilerOptions": {
+    "target": "es2019",
+    "module": "commonjs",
+    "outDir": "./dist",
+    "moduleResolution": "node",
+    "lib": [
+      "esnext.asynciterable",
+      "es2020"
+    ],
+    "experimentalDecorators": true,
+    "noUnusedLocals": true,
+    "noUnusedParameters": false,
+    "noImplicitAny": false,
+    "noStrictGenericChecks": false,
+    "removeComments": true,
+    "allowSyntheticDefaultImports": true,
+    "esModuleInterop": true,
+    "inlineSourceMap": true,
+    "incremental": true,
+    "isolatedModules": true,
+    "noEmitHelpers": true,
+    "importHelpers": true,
+    "strict": true,
+    "pretty": true,
+    "strictNullChecks": false,
+    "noImplicitOverride": false,
+    "skipLibCheck": true,
+    "resolveJsonModule": true,
+    "composite": true,
+    "baseUrl": "./",
+    "typeRoots": [
+      "node_modules/@types",
+      "@types"
+    ],
+    "paths": {
+      "lib/*": [
+        "src/lib/*"
+      ],
+      "controllers/*": [
+        "src/controllers/*"
+      ],
+      "server/*": [
+        "src/server/*"
+      ]
+    }
+  },
+  "files": [
+    "./src/app.ts"
+  ],
+  "include": [
+    "src/**/*"
+  ],
+  "exclude": [
+    "node_modules",
+    "dist",
+    "build",
+    "config",
+    "tmp",
+    "logs",
+    "oAuth2"
+  ]
+}

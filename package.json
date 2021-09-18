@@ -1,0 +1,50 @@
+{
+  "name": "appolo-server-express",
+  "version": "1.0.0",
+  "description": "",
+  "main": "src/app.ts",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "dev": "NODE_ENV=dev webpack --config webpack.config.js --progress"
+  },
+  "author": "",
+  "license": "ISC",
+  "devDependencies": {
+    "@stoplight/spectral-cli": "~6.0.0",
+    "@types/config": "~0.0.39",
+    "@types/connect": "~3.4.35",
+    "@types/cors": "~2.8.12",
+    "@types/jest": "~27.0.1",
+    "@types/koa": "~2.13.4",
+    "@types/koa__cors": "~3.0.3",
+    "@types/koa-compress": "~4.0.3",
+    "@types/morgan": "~1.9.3",
+    "@types/node": "~16.7.10",
+    "@types/pg": "~8.6.1",
+    "@types/swagger-tools": "~0.10.7",
+    "@typescript-eslint/eslint-plugin": "~4.30.0",
+    "@typescript-eslint/parser": "~4.30.0",
+    "circular-dependency-plugin": "~5.2.2",
+    "clean-webpack-plugin": "~4.0.0",
+    "concurrently": "~6.2.1",
+    "eslint": "~7.32.0",
+    "eslint-config-google": "~0.14.0",
+    "eslint-config-prettier": "~8.3.0",
+    "eslint-plugin-prettier": "~4.0.0",
+    "prettier": "~2.3.2",
+    "run-script-webpack-plugin": "~0.0.11",
+    "ts-jest": "^27.0.5",
+    "ts-loader": "~9.2.5",
+    "ts-node": "~10.2.1",
+    "tsconfig-paths-webpack-plugin": "~3.5.1",
+    "typescript": "~4.4.2",
+    "webpack": "~5.51.1",
+    "webpack-cli": "~4.8.0",
+    "webpack-node-externals": "~3.0.0"
+  },
+  "dependencies": {
+    "apollo-server-express": "^3.3.0",
+    "express": "^4.17.1",
+    "mongoose": "^6.0.6"
+  }
+}
