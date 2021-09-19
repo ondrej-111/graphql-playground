@@ -9,6 +9,7 @@
       "es2020"
     ],
     "experimentalDecorators": true,
+    "emitDecoratorMetadata": true,
     "noUnusedLocals": true,
     "noUnusedParameters": false,
     "noImplicitAny": false,
@@ -37,8 +38,8 @@
       "lib/*": [
         "src/lib/*"
       ],
-      "controllers/*": [
-        "src/controllers/*"
+      "resolvers/*": [
+        "src/resolvers/*"
       ],
       "server/*": [
         "src/server/*"

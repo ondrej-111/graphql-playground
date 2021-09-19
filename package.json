@@ -1,5 +1,5 @@
 {
-  "name": "appolo-server-express",
+  "name": "graphql-playground",
   "version": "1.0.0",
   "description": "",
   "main": "src/app.ts",
@@ -12,7 +12,6 @@
   "devDependencies": {
     "@stoplight/spectral-cli": "~6.0.0",
     "@types/config": "~0.0.39",
-    "@types/connect": "~3.4.35",
     "@types/cors": "~2.8.12",
     "@types/jest": "~27.0.1",
     "@types/koa": "~2.13.4",
@@ -20,7 +19,6 @@
     "@types/koa-compress": "~4.0.3",
     "@types/morgan": "~1.9.3",
     "@types/node": "~16.7.10",
-    "@types/pg": "~8.6.1",
     "@types/swagger-tools": "~0.10.7",
     "@typescript-eslint/eslint-plugin": "~4.30.0",
     "@typescript-eslint/parser": "~4.30.0",
@@ -43,8 +41,13 @@
     "webpack-node-externals": "~3.0.0"
   },
   "dependencies": {
-    "apollo-server-express": "^3.3.0",
-    "express": "^4.17.1",
-    "mongoose": "^6.0.6"
+    "@koa/cors": "~3.1.0",
+    "apollo-server-koa": "~3.3.0",
+    "koa": "~2.13.1",
+    "moment": "~2.29.1",
+    "mongodb": "~4.1.2",
+    "mongoose": "~6.0.6",
+    "reflect-metadata": "~0.1.13",
+    "typedi": "~0.10.0"
   }
 }
