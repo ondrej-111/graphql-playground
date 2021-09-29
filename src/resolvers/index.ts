@@ -1,6 +1,7 @@
 import {
   fResolverSite,
   injectResolverSites,
+  qMutationSite,
   qResolverSite,
 } from 'resolvers/site';
 
@@ -11,6 +12,9 @@ export interface ResolverInjectionInterface {
 const resolvers = {
   Query: {
     ...qResolverSite,
+  },
+  Mutation: {
+    ...qMutationSite,
   },
   ...fResolverSite,
 };

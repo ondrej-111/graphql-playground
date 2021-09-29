@@ -1,17 +1,17 @@
-import { SiteInterface } from 'lib/site/site.interfaces';
+import { TankInterface } from 'lib/site/site.interfaces';
 import { EntityAbstract } from 'lib/entities/entity.abstract';
 import { EntityResolveOptionsInterface } from 'lib/entities/entity.interfaces';
 import { entity, id } from 'lib/entities/entity.decorators';
 
 @entity
-export class SiteEntity extends EntityAbstract implements SiteInterface {
+export class TankEntity extends EntityAbstract implements TankInterface {
   @id()
-  site_id: string = null;
+  tank_id = '';
 
   name: string = '';
 
   constructor(
-    data?: Partial<SiteInterface>,
+    data?: Partial<TankInterface>,
     options?: EntityResolveOptionsInterface,
   ) {
     super();
@@ -19,6 +19,6 @@ export class SiteEntity extends EntityAbstract implements SiteInterface {
   }
 
   get identifier(): string {
-    return this.site_id;
+    return this.tank_id;
   }
 }

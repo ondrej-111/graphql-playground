@@ -7,7 +7,7 @@ const CircularDependencyPlugin = require('circular-dependency-plugin');
 const rswp = require('run-script-webpack-plugin');
 
 module.exports = {
-  entry: ['webpack/hot/poll?100', './src/app.ts'],
+  entry: ['webpack/hot/poll?100', path.join(__dirname, 'src/app.ts')],
   target: 'node',
   mode: 'development',
   watch: true,
@@ -30,7 +30,6 @@ module.exports = {
     ],
   },
   output: {
-    filename: '[name].js',
     path: path.resolve(__dirname, 'dist'),
   },
   resolve: {

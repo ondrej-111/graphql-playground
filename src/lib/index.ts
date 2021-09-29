@@ -1,4 +1,4 @@
-import { typeDefSite } from 'lib/site/schema';
+import { typeDefSite } from 'lib/site/site.schema';
 
 const typeDefs = [typeDefSite];
 

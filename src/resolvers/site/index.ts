@@ -1,17 +1,38 @@
 import { SiteService } from 'lib/site/site.service';
-import { getSites, getTanks } from 'resolvers/site/resolvers';
+import {
+  addSite,
+  deleteSite,
+  getSites,
+  getTanks,
+  patchSite,
+} from 'resolvers/site/site.resolvers';
 import { ResolverInjectionInterface } from 'resolvers/index';
+import { Container } from 'typedi';
+import { TankService } from 'lib/site/tank.service';
+
+const injection = () => {
+  return {
+    siteService: Container.get(SiteService),
+    TankService: Container.get(TankService),
+  };
+};
 
 export const injectResolver: ResolverInjectionInterface = {
-  sites: () => {
-    return {
-      siteService: SiteService,
-    };
-  },
+  sites: injection,
+  addSite: injection,
+  deleteSite: injection,
+  patchSite: injection,
+  tanks: injection,
 };
 
 const queryR = {
   sites: getSites,
+};
+
+const mutationR = {
+  addSite: addSite,
+  patchSite: patchSite,
+  deleteSite: deleteSite,
 };
 
 const fieldR = {
@@ -22,6 +43,7 @@ const fieldR = {
 
 export {
   queryR as qResolverSite,
+  mutationR as qMutationSite,
   fieldR as fResolverSite,
   injectResolver as injectResolverSites,
 };

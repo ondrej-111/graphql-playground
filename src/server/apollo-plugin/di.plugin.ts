@@ -35,8 +35,8 @@ export class DIApolloPlugin<T extends BaseContext>
   private parseSelectors(selectionSet: SelectionSetNode): string[] {
     let selectors: string[] = [];
     for (const s of selectionSet.selections) {
+      selectors.push((s as FieldNode).name.value);
       if ((s as FieldNode).selectionSet) {
-        selectors.push((s as FieldNode).name.value);
         selectors = [
           ...this.parseSelectors((s as FieldNode).selectionSet),
           ...selectors,
