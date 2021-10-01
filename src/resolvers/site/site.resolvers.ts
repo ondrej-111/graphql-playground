@@ -1,8 +1,15 @@
 import { SiteService } from 'lib/site/site.service';
 import { GraphQLResolveInfo } from 'graphql';
 import { TankService } from 'lib/site/tank.service';
-import { SiteDbFilter, SiteInterface } from 'lib/site/site.interfaces';
+import {
+  SiteDbFilter,
+  SiteInterface,
+  TankDbFilter,
+  TankInterface,
+} from 'lib/site/site.interfaces';
 import { SiteEntity } from 'lib/site/site.entity';
+import { TankEntity } from 'lib/site/tank.entity';
+import { UserInputError } from 'apollo-server-errors';
 
 export async function getSites(
   source: any,
@@ -46,7 +53,7 @@ export async function patchSite(
 
 export async function deleteSite(
   source: any,
-  { site_id }: Partial<SiteInterface>,
+  { site_id }: Pick<SiteInterface, 'site_id'>,
   ctx: {
     siteService: SiteService;
   },
@@ -63,6 +70,35 @@ export async function deleteSite(
 }
 
 export async function getTanks(
+  { site_id }: Pick<SiteInterface, 'site_id'>,
+  args: any,
+  ctx: { siteService: SiteService; tankService: TankService },
+  info: GraphQLResolveInfo,
+) {
+  const tanks = await ctx.tankService.getMany(
+    new Map<TankDbFilter, any>([[TankDbFilter.SITE_ID, site_id]]),
+  );
+  return tanks;
+}
+
+export async function addTank(
+  source: any,
+  { input }: { input: Pick<TankInterface, 'site_id' | 'name' | 'segments'> },
+  ctx: { siteService: SiteService; tankService: TankService },
+  info: GraphQLResolveInfo,
+) {
+  console.log('WTD');
+  const site = await ctx.siteService.getOne(
+    new Map<SiteDbFilter, any>([[SiteDbFilter.SITE_ID, input.site_id]]),
+  );
+  if (!site.identifier) {
+    throw new UserInputError('Site not found');
+  }
+
+  return await ctx.tankService.saveOne(new TankEntity(input, { source: 'fe' }));
+}
+
+export async function patchTank(
   { site_id }: { site_id?: string },
   args: any,
   ctx: { tankService: TankService },

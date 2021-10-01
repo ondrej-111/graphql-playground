@@ -1,7 +1,7 @@
 import db from 'lib/utils/mongo';
 import { EntityInterface } from 'lib/entities/entity.interfaces';
-import { Filter, ObjectId } from 'mongodb';
-import { MongoFilter } from 'lib/utils/mongo/mongo.interfaces';
+import { Filter } from 'mongodb';
+import { toObjectIds } from 'lib/utils/mongo/mongo.helpers';
 
 export abstract class MongoDbDriverAbstract<E extends EntityInterface> {
   async processQuery<Q>(q: Promise<Q>): Promise<Q> {
@@ -22,27 +22,26 @@ export abstract class MongoDbDriverAbstract<E extends EntityInterface> {
     );
   }
 
-  buildFilters(filters?: Map<string, any>): Filter<E> {
-    let filter = undefined;
-    if (filters && filters.size) {
-      filter = {};
-      for (const [key, value] of Array.from(filters)) {
-        this.buildFilter(filter, key, value);
+  buildFilters(filtersMap?: Map<string, any>): Filter<E> {
+    let returnFilter = undefined;
+    if (filtersMap && filtersMap.size) {
+      returnFilter = {};
+      for (const [key, value] of Array.from(filtersMap)) {
+        if (value !== undefined) {
+          returnFilter = this.buildFilter(returnFilter, key, value);
+        }
       }
     }
-    return filter;
+    return returnFilter;
   }
 
-  buildDefaultFilter(
-    filter: MongoFilter<E>,
-    key: '_id',
-    value: any,
-  ): MongoFilter<E> {
+  buildDefaultFilter(filter: Filter<E>, key: '_id', value: any): Filter<E> {
     switch (key) {
       case '_id':
-        filter['_id'] = Array.isArray(value)
-          ? { $in: value.map((v) => new ObjectId(v)) }
-          : new ObjectId(value);
+        filter = {
+          ...filter,
+          _id: { $in: toObjectIds(value) },
+        };
     }
     return filter;
   }
@@ -87,9 +86,5 @@ export abstract class MongoDbDriverAbstract<E extends EntityInterface> {
 
   abstract collection: string;
 
-  abstract buildFilter(
-    filter: MongoFilter<E>,
-    key: string,
-    value: any,
-  ): MongoFilter<E>;
+  abstract buildFilter(filter: Filter<E>, key: string, value: any): Filter<E>;
 }
