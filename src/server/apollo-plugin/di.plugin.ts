@@ -2,20 +2,19 @@ import {
   GraphQLRequestContext,
   GraphQLRequestContextDidResolveOperation,
 } from 'apollo-server-types';
-import {
-  ApolloServerPlugin,
-  GraphQLRequestListener,
-} from 'apollo-server-plugin-base/src/index';
+// import { ApolloServerPlugin } from '/apollo-server-plugin-base/src/index';
 import { BaseContext } from 'koa';
 import { FieldNode, SelectionSetNode } from 'graphql/language/ast';
 import { resolversInjections } from 'resolvers/index';
 
-export class DIApolloPlugin<T extends BaseContext>
-  implements ApolloServerPlugin<T>
-{
+// TODO: error: https://github.com/apollographql/apollo-server/issues/4827
+//  implement ApolloServerPlugin<T>
+export class DIApolloPlugin<T extends BaseContext> {
   async requestDidStart?(
     apolloContext: GraphQLRequestContext,
-  ): Promise<GraphQLRequestListener> {
+    // TODO: error: https://github.com/apollographql/apollo-server/issues/4827
+    //  return Promise<GraphQLRequestListener>
+  ): Promise<any> {
     return {
       didResolveOperation: async (
         ctx: GraphQLRequestContextDidResolveOperation<T>,
