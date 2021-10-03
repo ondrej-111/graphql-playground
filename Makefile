@@ -10,3 +10,6 @@ db-down:
 
 performance-test:
 	ab -c 100 -n 10000 -T 'application/json' -p ab.data http://localhost:4000/graphql
+
+performance-dataloader-test:
+	ab -c 100 -n 10000 -T 'application/json' -p ab-dataloader.data http://localhost:4000/graphql

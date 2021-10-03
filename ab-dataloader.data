@@ -1,0 +1,1 @@
+{"query":"query Query {\n  sites {\n    site_id\n    name\n    tanks {\n      tank_id\n      name\n      segments {\n        liters_per_cm\n        up_to_cm\n      }\n    }\n  }\n}","variables":"{\n}"}

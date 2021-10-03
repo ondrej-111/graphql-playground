@@ -1,5 +1,4 @@
 import { SiteService } from 'lib/site/site.service';
-import { GraphQLResolveInfo } from 'graphql';
 import { TankService } from 'lib/site/tank.service';
 import {
   SiteDbFilter,
@@ -10,6 +9,7 @@ import {
 import { SiteEntity } from 'lib/site/site.entity';
 import { TankEntity } from 'lib/site/tank.entity';
 import { UserInputError } from 'apollo-server-errors';
+import { GraphQLResolveInfo } from 'graphql';
 
 export async function getSites(
   source: any,
@@ -75,10 +75,14 @@ export async function getTanks(
   ctx: { siteService: SiteService; tankService: TankService },
   info: GraphQLResolveInfo,
 ) {
-  const tanks = await ctx.tankService.getMany(
-    new Map<TankDbFilter, any>([[TankDbFilter.SITE_ID, site_id]]),
+  // return ctx.tankService.getBySiteId(site_id);
+  return ctx.tankService.getMany(
+    new Map<TankDbFilter.SITE_ID, any>([[TankDbFilter.SITE_ID, site_id]]),
   );
-  return tanks;
+  // const tanks = await (site_id
+  //   ? ctx.tankService.getBySiteId(site_id)
+  //   : ctx.tankService.getMany());
+  // return tanks || [];
 }
 
 export async function addTank(
